@@ -8,7 +8,7 @@ const Useritem = ({user : {login, avatar_url, html_url}}) => {
         const styling = {
             width : '60px',
         }
-
+        
         return (
             <div className="card text-center">
                 <img src={avatar_url} 
@@ -19,10 +19,10 @@ const Useritem = ({user : {login, avatar_url, html_url}}) => {
                 <h3>{login}</h3>
 
                 <div>
-                    <Link to={html_url}
+                    <a href={html_url}
                         className="btn btn-dark btn-sm my-1">
                             More
-                    </Link>
+                    </a>
                     <Link to={`/user/${login}`}
                         className="btn btn-success btn-sm my-1">
                             Detail
@@ -32,7 +32,7 @@ const Useritem = ({user : {login, avatar_url, html_url}}) => {
         )
 }
 
-Useritem.prototype = {
+Useritem.protTypes = {
     user : PropTypes.object.isRequired,
 }
 
