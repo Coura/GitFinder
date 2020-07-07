@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import UserItem from './Useritem'
-
 import Spinner from '../Layout/Spinner'
-import PropTypes from 'prop-types'
 
 
-const Users = ({users, loading}) => {
-        
+import GithubContext from '../../context/github/githubContext'
+
+
+const Users = () => {
+    const githubContext = useContext(GithubContext)
+    const {loading, users} = githubContext;
+
+    useEffect( ()=>{
+        if(users.length <= 0)
+        githubContext.loadFirst();
+      },[githubContext,users.length])
+
     return (
-        
             <>
                 {loading ? (<Spinner />) : (<div style={userStyle}>
                 {users.map(user => (
@@ -22,11 +29,6 @@ const Users = ({users, loading}) => {
     }
 
 
-
-Users.propTypes = {
-    users : PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired
-}
 
 const userStyle = {
     display : 'grid',

@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import GithubProvider from './context/github/GithubState'
 import App from './App';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GithubProvider>
+     <App />
+    </GithubProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
